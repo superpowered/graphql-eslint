@@ -25,7 +25,7 @@ export function loadOnDiskGraphQLConfig(filePath: string): GraphQLConfig {
 export function loadGraphQLConfig(options: ParserOptions): GraphQLConfig {
   // We don't want cache config on test environment
   // Otherwise schema and documents will be same for all tests
-  if (process.env.NODE_ENV !== 'test' && graphQLConfig) {
+  if (process.env.NODE_ENV !== 'test' && graphQLConfig && graphQLConfig['_rawConfig'].schema === options.schema) {
     return graphQLConfig;
   }
 
